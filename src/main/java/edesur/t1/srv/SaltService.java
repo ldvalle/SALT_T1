@@ -3,22 +3,11 @@ package edesur.t1.srv;
 import edesur.t1.srv.model.ActuDataComerRequest;
 import edesur.t1.srv.model.ActuDataComerResponse;
 
+import edesur.t1.srv.model.ComprobantePagoRequest;
+import edesur.t1.srv.model.ComprobantePagoResponse;
 
-import edesur.t1.srv.model.DeudaRequest;
-import edesur.t1.srv.model.DeudaResponse;
-import edesur.t1.srv.model.SuministroRequest;
-import edesur.t1.srv.model.SuministroResponse;
-import edesur.t1.srv.model.DirSumRequest;
-import edesur.t1.srv.model.DirSumResponse;
-import edesur.t1.srv.model.LecturaRequest;
-import edesur.t1.srv.model.LecturaResponse;
-import edesur.t1.srv.model.InsSapRegiClienteRequest;
-import edesur.t1.srv.model.InsSapRegiClienteResponse;
-import edesur.t1.srv.model.AltaSeguroRequest;
-import edesur.t1.srv.model.AltaSeguroResponse;
-import edesur.t1.srv.model.BajaSeguroRequest;
-import edesur.t1.srv.model.BajaSeguroResponse;
-
+import edesur.t1.srv.model.AdeDebAutRequest;
+import edesur.t1.srv.model.AdeDebAutResponse;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -40,53 +29,19 @@ public class SaltService {
     }	
 
     @POST
-    @Path("/deuda")
+    @Path("/comprobantePago")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public DeudaResponse deuda(@NotNull @Valid DeudaRequest request) {
+    public ComprobantePagoResponse comprobantePago(@NotNull @Valid ComprobantePagoRequest request) {
+        return null;
+    }	
+
+    @POST
+    @Path("/adhesionDebito")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public AdeDebAutResponse adhesionDebito(@NotNull @Valid AdeDebAutRequest request) {
         return null;
     }
-
-    @POST
-    @Path("/suministro")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public SuministroResponse suministro(@NotNull @Valid SuministroRequest request) {
-        return null;
-    }
-
-    @POST
-    @Path("/dirSum")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public DirSumResponse dirSum(@NotNull @Valid DirSumRequest request) {
-        return null;
-    }
-
-    @POST
-    @Path("/lecturas")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public LecturaResponse lecturas(@NotNull @Valid LecturaRequest request) {
-        return null;
-    }
-
-    @POST
-    @Path("/ins_sap_regi_cliente")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public InsSapRegiClienteResponse ins_sap_regi_cliente(@NotNull @Valid InsSapRegiClienteRequest request) { return null; }
-
-    @POST
-    @Path("/AltaSeguros")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public AltaSeguroResponse AltaSeguros(@NotNull @Valid AltaSeguroRequest request) { return null; }
-
-    @POST
-    @Path("/BajaSeguros")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public BajaSeguroResponse BajaSeguros(@NotNull @Valid BajaSeguroRequest request) { return null; }
-
+    
 }

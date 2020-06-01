@@ -13,23 +13,12 @@ public class AppRouteBuilder extends BaseRouteBuilder {
                 .choice()
                     .when(header(CxfConstants.OPERATION_NAME).isEqualTo("actuDataComer"))
                         .to("direct:setDataComer")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("deuda"))
-                        .to("direct:getDeuda")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("suministro"))
-                        .to("direct:getSuministro")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("dirSum"))
-                        .to("direct:getDirSum")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("lecturas"))
-                        .to("direct:getLecturas")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("ins_sap_regi_cliente"))
-                        .to("direct:setSapRegiCliente")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("AltaSeguros"))
-                        .to("direct:setAltaClienteSeguro")
-                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("BajaSeguros"))
-                        .to("direct:setBajaClienteSeguro")
-
+                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("comprobantePago"))
+                        .to("direct:setComprobantePago")                        
+                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("adhesionDebito"))
+                        .to("direct:setDebitoAutomatico")
                     .otherwise()
-                        .log(LoggingLevel.ERROR, "Opeacion no implementada: " + header(CxfConstants.OPERATION_NAME))
+                        .log(LoggingLevel.ERROR, "Operacion no implementada: " + header(CxfConstants.OPERATION_NAME))
                 .end();
     }
 }
