@@ -1,7 +1,9 @@
-call sp_setmicliente(
+call salt_actu_data_comer(
 :#${header.numeroCliente},
-:#${header.nroOrden},
+:#${header.numeroOrden},
 :#${header.nombreCliente},
 :#${header.tipoDocumento},
 :#${header.nroDocumento},
-:#${header.telefono})
+:#${header.telefonoCliente},
+:#${header.eMail})
+

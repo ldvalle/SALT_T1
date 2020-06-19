@@ -21,6 +21,7 @@ public class ActuDataComerRouteBuilder extends  BaseRouteBuilder {
 			 .setHeader("nroDocumento", simple("${body.getNroDocumento}"))
 			 .setHeader("telefonoCliente", simple("${body.getTelefonoCliente}"))
 			 .setHeader("eMail", simple("${body.getEmail}"))
+			 .transacted()
           .log(LoggingLevel.DEBUG, logname, "Actualiza Datos Comerciales Cliente ${header.numeroCliente}")
           .setHeader("response", body())
 			 //.to("sql:classpath:sql/insMiCliente.sql?dataSource=#SynergiaDS&outputType=SelectOne&outputClass=edesur.t1.srv.model.ResponseBase")
