@@ -17,6 +17,12 @@ public class AppRouteBuilder extends BaseRouteBuilder {
                         .to("direct:setComprobantePago")                        
                     .when(header(CxfConstants.OPERATION_NAME).isEqualTo("adhesionDebito"))
                         .to("direct:setDebitoAutomatico")
+                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("bloqueoProrroga"))
+                        .to("direct:setBloqueoProrroga")
+                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("tipoReparto"))
+                        .to("direct:setTipoReparto")
+                    .when(header(CxfConstants.OPERATION_NAME).isEqualTo("consultaCorteRepo"))
+                        .to("direct:setConsultaCorteRepo")                        
                     .otherwise()
                         .log(LoggingLevel.ERROR, "Operacion no implementada: " + header(CxfConstants.OPERATION_NAME))
                 .end();

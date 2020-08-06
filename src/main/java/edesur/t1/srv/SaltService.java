@@ -9,6 +9,15 @@ import edesur.t1.srv.model.ComprobantePagoResponse;
 import edesur.t1.srv.model.AdeDebAutRequest;
 import edesur.t1.srv.model.AdeDebAutResponse;
 
+import edesur.t1.srv.model.BloqueoProrrogaRequest;
+import edesur.t1.srv.model.BloqueoProrrogaResponse;
+
+import edesur.t1.srv.model.TipoRepartoRequest;
+import edesur.t1.srv.model.TipoRepartoResponse;
+
+import edesur.t1.srv.model.ConsultaCorteRepoRequest;
+import edesur.t1.srv.model.ConsultaCorteRepoResponse;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
@@ -43,5 +52,28 @@ public class SaltService {
     public AdeDebAutResponse adhesionDebito(@NotNull @Valid AdeDebAutRequest request) {
         return null;
     }
-    
+
+    @POST
+    @Path("/bloqueoProrroga")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public BloqueoProrrogaResponse bloqueoProrroga(@NotNull @Valid BloqueoProrrogaRequest request) {
+        return null;
+    }
+
+    @POST
+    @Path("/tipoReparto")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public TipoRepartoResponse tipoReparto(@NotNull @Valid TipoRepartoRequest request) {
+        return null;
+    }    
+
+    @POST
+    @Path("/consultaCorteRepo")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ConsultaCorteRepoResponse consultaCorteRepo(@NotNull @Valid ConsultaCorteRepoRequest request) {
+        return null;
+    }    
 }

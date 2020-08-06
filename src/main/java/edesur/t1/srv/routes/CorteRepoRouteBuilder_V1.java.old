@@ -1,0 +1,29 @@
+package edesur.t1.srv.routes;
+
+import edesur.t1.srv.errores.ErrorResponse;
+import edesur.t1.srv.errores.ErrorType;
+import edesur.t1.srv.model.CorteRepoResultado;
+import org.apache.camel.LoggingLevel;
+
+public class CorteRepoRouteBuilder extends  BaseRouteBuilder {
+    @Override
+    public void configure() throws Exception {
+        super.configure();
+
+        from("direct:setConsultaCorteRepo")
+			 .routeId("setConsultaCorteRepo")
+			 .setHeader("numeroSuministro", simple("${body.getListaResultado.get(0).getNumeroSuministro}"))
+			 .setHeader("fechaDesde", simple("${body.getListaResultado.get(0).getFechaDesde}"))
+			 .setHeader("fechaHasta", simple("${body.getListaResultado.get(0).getFechaHasta}"))
+          .log(LoggingLevel.DEBUG, logname, "Consulta de Cortes y Reposiciones Cliente ${header.numeroSuministro}")
+          .setHeader("response", body())
+			 .to("sql:classpath:sql/ConsultaCorteRepo.sql?dataSource=#SynergiaDS&outputType=SelectList&outputClass=edesur.t1.srv.model.ConsultaCorteRepoResponse")
+			 .choice()
+			 .when(body().isNull())
+				  .log(LoggingLevel.DEBUG, logname, "Cliente ${header.numeroSuministro} no existe")
+				  .setBody(constant(ErrorResponse.create(ErrorType.ClienteNoExiste)))
+			 .otherwise()
+				  .log(LoggingLevel.DEBUG, logname, "Cliente ${header.numeroSuministro}: ${body}")
+			 .end();                
+    }
+}

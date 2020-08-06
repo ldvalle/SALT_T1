@@ -19,6 +19,7 @@ public class ComprobantePagoRouteBuilder extends  BaseRouteBuilder {
 			 .setHeader("saldoCuotasConvenio", simple("${body.getSaldoCuotasConvenio}"))
 			 .setHeader("saldoTotal", simple("${body.getSaldoTotal}"))
 			 .setHeader("montoFlexible", simple("${body.getMontoFlexible}"))
+			 .transacted()
           .log(LoggingLevel.DEBUG, logname, "Comprobante de Pago Cliente ${header.numeroCliente}")
           .setHeader("response", body())
 			 .to("sql:classpath:sql/spComprobantePago.sql?dataSource=#SynergiaDS&outputType=SelectOne&outputClass=edesur.t1.srv.model.ComprobantePagoResponse")

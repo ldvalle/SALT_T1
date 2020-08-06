@@ -19,11 +19,10 @@ public class AdeDebAutRouteBuilder extends  BaseRouteBuilder {
 			 .setHeader("nroTarjeta", simple("${body.getNroTarjeta}"))
 			 .setHeader("nroCBU", simple("${body.getNroCBU}"))
 			 .setHeader("tipoCuenta", simple("${body.getTipoCuenta}"))
+			 .transacted()
           .log(LoggingLevel.DEBUG, logname, "Alta Debito Automatico Cliente ${header.cuentaContrato}")
           .setHeader("response", body())
-          
 			 .to("sql:classpath:sql/spDebitoAutomatico.sql?dataSource=#SynergiaDS&outputType=SelectOne&outputClass=edesur.t1.srv.model.AdeDebAutResponse")
-
 			 .choice()
 			 .when(body().isNull())
 				  .log(LoggingLevel.DEBUG, logname, "Cliente ${header.cuentaContrato} no existe")
