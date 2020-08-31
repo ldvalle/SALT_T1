@@ -61,7 +61,43 @@ c3.rol usuario,
 c3.tipo tipo
 FROM corplazo c3, sf_transforma sm3
 WHERE c3.numero_cliente = :#${header.numeroSuministro}
-AND c3.fecha_solicitud BETWEEN :#${header.fechaDesde} AND :#${header.fechaHasta}
+AND date(c3.fecha_solicitud) BETWEEN :#${header.fechaDesde} AND :#${header.fechaHasta}
 AND sm3.clave= 'MOTPRORO'
 AND sm3.cod_mac = c3.cod_motivo
+UNION
+select c4.numero_cliente numerosuministro,
+' ' nroOrdenSap,
+(c4.numero_cliente || LPAD(c4.corr_corte, 4, '0') || 'CORTFOPARG') idCorteRepo,
+'C' tipoRegistro,
+sm1.cod_sf1 motivo,
+'20' estado,
+c4.fecha_generacion fechaEjecucion,
+c4.fecha_solicitud fechaSolicitud,
+' ' accionRealizada,
+' ' usuario,
+' ' tipo
+from corsoco c4, sf_transforma sm1
+where c4.numero_cliente = :#${header.numeroSuministro}
+and date(c4.fecha_solicitud) BETWEEN :#${header.fechaDesde} AND :#${header.fechaHasta}
+and c4.estado in('G', 'S')
+AND sm1.clave = 'MOTCORTE'
+AND sm1.cod_mac = c4.motivo_sol
+UNION
+select c5.numero_cliente numerosuministro,
+' ' nroOrdenSap,
+(c5.numero_cliente || LPAD(c5.corr_repo, 4, '0') || 'CORTFOPARG') idCorteRepo,
+'R' tipoRegistro,
+sm1.cod_sf1 motivo,
+'20' estado,
+c5.fecha_generacion fechaEjecucion,
+c5.fecha_solicitud fechaSolicitud,
+' ' accionRealizada,
+' ' usuario,
+' ' tipo
+from corsore c5, sf_transforma sm1
+where c5.numero_cliente = :#${header.numeroSuministro}
+and date(c5.fecha_solicitud) BETWEEN :#${header.fechaDesde} AND :#${header.fechaHasta}
+and c5.estado in('G', 'S')
+AND sm1.clave = 'MOTREPO'
+AND sm1.cod_mac = c5.motivo_sol
 ORDER BY 8
