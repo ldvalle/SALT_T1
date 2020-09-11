@@ -51,8 +51,8 @@ c3.numero_cliente || TO_CHAR(c3.fecha_solicitud, '%Y%m%d') || 'PRORFOPARG' idCor
 'P' tipoRegistro,
 sm3.cod_sf1 motivo,
 CASE
-	WHEN c3.fecha_anterior + c3.dias > TODAY THEN 'A'
-  ELSE 'D'
+	WHEN c3.fecha_anterior + c3.dias > TODAY THEN 'Approved'
+  ELSE 'Cancelled'
 END estado,
 c3.fecha_solicitud fechaEjecucion,
 c3.fecha_solicitud fechaSolicitud,
@@ -88,7 +88,7 @@ select c5.numero_cliente numerosuministro,
 (c5.numero_cliente || LPAD(c5.corr_repo, 4, '0') || 'CORTFOPARG') idCorteRepo,
 'R' tipoRegistro,
 sm1.cod_sf1 motivo,
-'20' estado,
+'22' estado,
 c5.fecha_generacion fechaEjecucion,
 c5.fecha_solicitud fechaSolicitud,
 ' ' accionRealizada,
