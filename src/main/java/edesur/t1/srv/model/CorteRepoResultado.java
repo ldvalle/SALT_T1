@@ -27,6 +27,8 @@ import java.util.Date;
 public class CorteRepoResultado{ 
 	
    //@JsonIgnore
+    private Date fechaEjecucion;
+   
    @NotNull
 	private long numeroSuministro;
 	@NotNull
@@ -39,8 +41,7 @@ public class CorteRepoResultado{
 	private String	motivo;
 	@NotNull
 	private String estado;
-	@NotNull
-	private Date fechaEjecucion;
+	
 	@NotNull
 	private Date fechaSolicitud;
 	@NotNull
@@ -94,7 +95,7 @@ public class CorteRepoResultado{
 	  sb.append(", 'tipoRegistro'='").append(tipoRegistro).append('\'');
 	  sb.append(", 'motivo'='").append(motivo).append('\'');
 	  sb.append(", 'estado'='").append(estado).append('\'');
-	  sb.append(", 'fechaEjecucion'=").append(fechaEjecucion);
+      sb.append(", 'fechaEjecucion'=").append(fechaEjecucion);
 	  sb.append(", 'fechaSolicitud'=").append(fechaSolicitud);
 	  sb.append(", 'accionRealizada'='").append(accionRealizada).append('\'');
 	  sb.append(", 'usuario'='").append(usuario).append('\'');

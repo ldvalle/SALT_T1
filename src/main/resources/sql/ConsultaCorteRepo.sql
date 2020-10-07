@@ -4,8 +4,9 @@ SELECT c1.numero_cliente numerosuministro,
 'C' tipoRegistro,
 sm1.cod_sf1 motivo,
 CASE
+	WHEN c1.fecha_corte IS NOT NULL AND c1.accion_corte IN ( '16', '34', '35', '30', '40', '41') THEN '99'
 	WHEN c1.fecha_corte IS NULL THEN '20'
-  ELSE '21'
+  	ELSE '21'
 END estado,
 c1.fecha_corte fechaEjecucion,
 c1.fecha_ini_evento fechaSolicitud,
